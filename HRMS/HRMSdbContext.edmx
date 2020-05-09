@@ -1,0 +1,649 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HRMSdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="deptId" />
+          </Key>
+          <Property Name="deptId" Type="int" Nullable="false" />
+          <Property Name="deptName" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="designation">
+          <Key>
+            <PropertyRef Name="desigId" />
+          </Key>
+          <Property Name="desigId" Type="int" Nullable="false" />
+          <Property Name="desigName" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="empdept">
+          <Key>
+            <PropertyRef Name="empId" />
+          </Key>
+          <Property Name="empId" Type="int" Nullable="false" />
+          <Property Name="deptId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="empdesig">
+          <Key>
+            <PropertyRef Name="empId" />
+          </Key>
+          <Property Name="empId" Type="int" Nullable="false" />
+          <Property Name="desigId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="empId" />
+          </Key>
+          <Property Name="empId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="empName" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="empPhone" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="empEmail" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="empAddress" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="joiningDate" Type="date" Nullable="false" />
+          <Property Name="empIsActive" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="empGender" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="empSkill" Type="nvarchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="emputype">
+          <Key>
+            <PropertyRef Name="empId" />
+          </Key>
+          <Property Name="empId" Type="int" Nullable="false" />
+          <Property Name="utypeId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'HRMSdb.dbo.paypay' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="paypay">
+          <Key>
+            <PropertyRef Name="payrollId" />
+            <PropertyRef Name="payslipId" />
+          </Key>
+          <Property Name="payrollId" Type="int" Nullable="false" />
+          <Property Name="payslipId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="payroll">
+          <Key>
+            <PropertyRef Name="payrollId" />
+          </Key>
+          <Property Name="payrollId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="month" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="year" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="total" Type="float" Nullable="false" />
+          <Property Name="status" Type="nvarchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="payslip">
+          <Key>
+            <PropertyRef Name="payslipId" />
+          </Key>
+          <Property Name="payslipId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="payslipDate" Type="date" Nullable="false" />
+          <Property Name="addition" Type="float" Nullable="false" />
+          <Property Name="deduction" Type="float" Nullable="false" />
+          <Property Name="genarate" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="basic" Type="float" Nullable="false" />
+          <Property Name="ca" Type="float" Nullable="false" />
+          <Property Name="ha" Type="float" Nullable="false" />
+          <Property Name="salId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="salary">
+          <Key>
+            <PropertyRef Name="salId" />
+          </Key>
+          <Property Name="salId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="salDate" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="basic" Type="float" Nullable="false" />
+          <Property Name="ca" Type="float" Nullable="false" />
+          <Property Name="ha" Type="float" Nullable="false" />
+          <Property Name="empId" Type="int" Nullable="false" />
+          <Property Name="isActive" Type="nvarchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="empId" />
+          </Key>
+          <Property Name="empId" Type="int" Nullable="false" />
+          <Property Name="userId" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="pass" Type="nvarchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usertype">
+          <Key>
+            <PropertyRef Name="utypeId" />
+          </Key>
+          <Property Name="utypeId" Type="int" Nullable="false" />
+          <Property Name="utypeName" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_empdept_department">
+          <End Role="department" Type="Self.department" Multiplicity="1" />
+          <End Role="empdept" Type="Self.empdept" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department">
+              <PropertyRef Name="deptId" />
+            </Principal>
+            <Dependent Role="empdept">
+              <PropertyRef Name="deptId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_empdept_employee">
+          <End Role="employee" Type="Self.employee" Multiplicity="1" />
+          <End Role="empdept" Type="Self.empdept" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="empId" />
+            </Principal>
+            <Dependent Role="empdept">
+              <PropertyRef Name="empId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_empdesig_designation">
+          <End Role="designation" Type="Self.designation" Multiplicity="1" />
+          <End Role="empdesig" Type="Self.empdesig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="designation">
+              <PropertyRef Name="desigId" />
+            </Principal>
+            <Dependent Role="empdesig">
+              <PropertyRef Name="desigId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_empdesig_employee">
+          <End Role="employee" Type="Self.employee" Multiplicity="1" />
+          <End Role="empdesig" Type="Self.empdesig" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="empId" />
+            </Principal>
+            <Dependent Role="empdesig">
+              <PropertyRef Name="empId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_emputype_employee">
+          <End Role="employee" Type="Self.employee" Multiplicity="1" />
+          <End Role="emputype" Type="Self.emputype" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="empId" />
+            </Principal>
+            <Dependent Role="emputype">
+              <PropertyRef Name="empId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_emputype_usertype">
+          <End Role="usertype" Type="Self.usertype" Multiplicity="1" />
+          <End Role="emputype" Type="Self.emputype" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usertype">
+              <PropertyRef Name="utypeId" />
+            </Principal>
+            <Dependent Role="emputype">
+              <PropertyRef Name="utypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_paypay_payroll">
+          <End Role="payroll" Type="Self.payroll" Multiplicity="1" />
+          <End Role="paypay" Type="Self.paypay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="payroll">
+              <PropertyRef Name="payrollId" />
+            </Principal>
+            <Dependent Role="paypay">
+              <PropertyRef Name="payrollId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_paypay_payslip">
+          <End Role="payslip" Type="Self.payslip" Multiplicity="1" />
+          <End Role="paypay" Type="Self.paypay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="payslip">
+              <PropertyRef Name="payslipId" />
+            </Principal>
+            <Dependent Role="paypay">
+              <PropertyRef Name="payslipId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_payslip_salary">
+          <End Role="salary" Type="Self.salary" Multiplicity="1" />
+          <End Role="payslip" Type="Self.payslip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="salary">
+              <PropertyRef Name="salId" />
+            </Principal>
+            <Dependent Role="payslip">
+              <PropertyRef Name="salId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_salary_employee">
+          <End Role="employee" Type="Self.employee" Multiplicity="1" />
+          <End Role="salary" Type="Self.salary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="empId" />
+            </Principal>
+            <Dependent Role="salary">
+              <PropertyRef Name="empId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_employee">
+          <End Role="employee" Type="Self.employee" Multiplicity="1" />
+          <End Role="user" Type="Self.user" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="empId" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="empId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HRMSdbModelStoreContainer">
+          <EntitySet Name="department" EntityType="Self.department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="designation" EntityType="Self.designation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="empdept" EntityType="Self.empdept" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="empdesig" EntityType="Self.empdesig" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employee" EntityType="Self.employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="emputype" EntityType="Self.emputype" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="payroll" EntityType="Self.payroll" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="payslip" EntityType="Self.payslip" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="salary" EntityType="Self.salary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usertype" EntityType="Self.usertype" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="paypay" EntityType="Self.paypay" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [paypay].[payrollId] AS [payrollId], 
+    [paypay].[payslipId] AS [payslipId]
+    FROM [dbo].[paypay] AS [paypay]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_empdept_department" Association="Self.FK_empdept_department">
+            <End Role="department" EntitySet="department" />
+            <End Role="empdept" EntitySet="empdept" />
+          </AssociationSet>
+          <AssociationSet Name="FK_empdept_employee" Association="Self.FK_empdept_employee">
+            <End Role="employee" EntitySet="employee" />
+            <End Role="empdept" EntitySet="empdept" />
+          </AssociationSet>
+          <AssociationSet Name="FK_empdesig_designation" Association="Self.FK_empdesig_designation">
+            <End Role="designation" EntitySet="designation" />
+            <End Role="empdesig" EntitySet="empdesig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_empdesig_employee" Association="Self.FK_empdesig_employee">
+            <End Role="employee" EntitySet="employee" />
+            <End Role="empdesig" EntitySet="empdesig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_emputype_employee" Association="Self.FK_emputype_employee">
+            <End Role="employee" EntitySet="employee" />
+            <End Role="emputype" EntitySet="emputype" />
+          </AssociationSet>
+          <AssociationSet Name="FK_emputype_usertype" Association="Self.FK_emputype_usertype">
+            <End Role="usertype" EntitySet="usertype" />
+            <End Role="emputype" EntitySet="emputype" />
+          </AssociationSet>
+          <AssociationSet Name="FK_paypay_payroll" Association="Self.FK_paypay_payroll">
+            <End Role="payroll" EntitySet="payroll" />
+            <End Role="paypay" EntitySet="paypay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_paypay_payslip" Association="Self.FK_paypay_payslip">
+            <End Role="payslip" EntitySet="payslip" />
+            <End Role="paypay" EntitySet="paypay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_payslip_salary" Association="Self.FK_payslip_salary">
+            <End Role="salary" EntitySet="salary" />
+            <End Role="payslip" EntitySet="payslip" />
+          </AssociationSet>
+          <AssociationSet Name="FK_salary_employee" Association="Self.FK_salary_employee">
+            <End Role="employee" EntitySet="employee" />
+            <End Role="salary" EntitySet="salary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_employee" Association="Self.FK_user_employee">
+            <End Role="employee" EntitySet="employee" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HRMSdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="deptId" />
+          </Key>
+          <Property Name="deptId" Type="Int32" Nullable="false" />
+          <Property Name="deptName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="employees" Relationship="Self.empdept" FromRole="department" ToRole="employee" />
+        </EntityType>
+        <EntityType Name="designation">
+          <Key>
+            <PropertyRef Name="desigId" />
+          </Key>
+          <Property Name="desigId" Type="Int32" Nullable="false" />
+          <Property Name="desigName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="employees" Relationship="Self.empdesig" FromRole="designation" ToRole="employee" />
+        </EntityType>
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="empId" />
+          </Key>
+          <Property Name="empId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="empName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="empPhone" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="empEmail" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="empAddress" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="joiningDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="empIsActive" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="empGender" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="empSkill" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="salaries" Relationship="Self.FK_salary_employee" FromRole="employee" ToRole="salary" />
+          <NavigationProperty Name="user" Relationship="Self.FK_user_employee" FromRole="employee" ToRole="user" />
+          <NavigationProperty Name="department" Relationship="Self.empdept" FromRole="employee" ToRole="department" />
+          <NavigationProperty Name="designation" Relationship="Self.empdesig" FromRole="employee" ToRole="designation" />
+          <NavigationProperty Name="usertype" Relationship="Self.emputype" FromRole="employee" ToRole="usertype" />
+        </EntityType>
+        <EntityType Name="payroll">
+          <Key>
+            <PropertyRef Name="payrollId" />
+          </Key>
+          <Property Name="payrollId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="month" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="year" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="total" Type="Double" Nullable="false" />
+          <Property Name="status" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="payslips" Relationship="Self.paypay" FromRole="payroll" ToRole="payslip" />
+        </EntityType>
+        <EntityType Name="payslip">
+          <Key>
+            <PropertyRef Name="payslipId" />
+          </Key>
+          <Property Name="payslipId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="payslipDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="addition" Type="Double" Nullable="false" />
+          <Property Name="deduction" Type="Double" Nullable="false" />
+          <Property Name="genarate" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="basic" Type="Double" Nullable="false" />
+          <Property Name="ca" Type="Double" Nullable="false" />
+          <Property Name="ha" Type="Double" Nullable="false" />
+          <Property Name="salId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="salary" Relationship="Self.FK_payslip_salary" FromRole="payslip" ToRole="salary" />
+          <NavigationProperty Name="payrolls" Relationship="Self.paypay" FromRole="payslip" ToRole="payroll" />
+        </EntityType>
+        <EntityType Name="salary">
+          <Key>
+            <PropertyRef Name="salId" />
+          </Key>
+          <Property Name="salId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="salDate" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="basic" Type="Double" Nullable="false" />
+          <Property Name="ca" Type="Double" Nullable="false" />
+          <Property Name="ha" Type="Double" Nullable="false" />
+          <Property Name="empId" Type="Int32" Nullable="false" />
+          <Property Name="isActive" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="employee" Relationship="Self.FK_salary_employee" FromRole="salary" ToRole="employee" />
+          <NavigationProperty Name="payslips" Relationship="Self.FK_payslip_salary" FromRole="salary" ToRole="payslip" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="empId" />
+          </Key>
+          <Property Name="empId" Type="Int32" Nullable="false" />
+          <Property Name="userId" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pass" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="employee" Relationship="Self.FK_user_employee" FromRole="user" ToRole="employee" />
+        </EntityType>
+        <EntityType Name="usertype">
+          <Key>
+            <PropertyRef Name="utypeId" />
+          </Key>
+          <Property Name="utypeId" Type="Int32" Nullable="false" />
+          <Property Name="utypeName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="employees" Relationship="Self.emputype" FromRole="usertype" ToRole="employee" />
+        </EntityType>
+        <Association Name="FK_salary_employee">
+          <End Role="employee" Type="Self.employee" Multiplicity="1" />
+          <End Role="salary" Type="Self.salary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="empId" />
+            </Principal>
+            <Dependent Role="salary">
+              <PropertyRef Name="empId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_employee">
+          <End Role="employee" Type="Self.employee" Multiplicity="1" />
+          <End Role="user" Type="Self.user" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="empId" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="empId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_payslip_salary">
+          <End Role="salary" Type="Self.salary" Multiplicity="1" />
+          <End Role="payslip" Type="Self.payslip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="salary">
+              <PropertyRef Name="salId" />
+            </Principal>
+            <Dependent Role="payslip">
+              <PropertyRef Name="salId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="empdept">
+          <End Role="department" Type="Self.department" Multiplicity="0..1" />
+          <End Role="employee" Type="Self.employee" Multiplicity="*" />
+        </Association>
+        <Association Name="empdesig">
+          <End Role="designation" Type="Self.designation" Multiplicity="0..1" />
+          <End Role="employee" Type="Self.employee" Multiplicity="*" />
+        </Association>
+        <Association Name="emputype">
+          <End Role="employee" Type="Self.employee" Multiplicity="*" />
+          <End Role="usertype" Type="Self.usertype" Multiplicity="0..1" />
+        </Association>
+        <Association Name="paypay">
+          <End Role="payroll" Type="Self.payroll" Multiplicity="*" />
+          <End Role="payslip" Type="Self.payslip" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="HRMSdbContext1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="departments" EntityType="Self.department" />
+          <EntitySet Name="designations" EntityType="Self.designation" />
+          <EntitySet Name="employees" EntityType="Self.employee" />
+          <EntitySet Name="payrolls" EntityType="Self.payroll" />
+          <EntitySet Name="payslips" EntityType="Self.payslip" />
+          <EntitySet Name="salaries" EntityType="Self.salary" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <EntitySet Name="usertypes" EntityType="Self.usertype" />
+          <AssociationSet Name="FK_salary_employee" Association="Self.FK_salary_employee">
+            <End Role="employee" EntitySet="employees" />
+            <End Role="salary" EntitySet="salaries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_employee" Association="Self.FK_user_employee">
+            <End Role="employee" EntitySet="employees" />
+            <End Role="user" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_payslip_salary" Association="Self.FK_payslip_salary">
+            <End Role="salary" EntitySet="salaries" />
+            <End Role="payslip" EntitySet="payslips" />
+          </AssociationSet>
+          <AssociationSet Name="empdept" Association="Self.empdept">
+            <End Role="department" EntitySet="departments" />
+            <End Role="employee" EntitySet="employees" />
+          </AssociationSet>
+          <AssociationSet Name="empdesig" Association="Self.empdesig">
+            <End Role="designation" EntitySet="designations" />
+            <End Role="employee" EntitySet="employees" />
+          </AssociationSet>
+          <AssociationSet Name="emputype" Association="Self.emputype">
+            <End Role="employee" EntitySet="employees" />
+            <End Role="usertype" EntitySet="usertypes" />
+          </AssociationSet>
+          <AssociationSet Name="paypay" Association="Self.paypay">
+            <End Role="payroll" EntitySet="payrolls" />
+            <End Role="payslip" EntitySet="payslips" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HRMSdbModelStoreContainer" CdmEntityContainer="HRMSdbContext1">
+          <EntitySetMapping Name="departments">
+            <EntityTypeMapping TypeName="HRMSdbModel.department">
+              <MappingFragment StoreEntitySet="department">
+                <ScalarProperty Name="deptId" ColumnName="deptId" />
+                <ScalarProperty Name="deptName" ColumnName="deptName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="designations">
+            <EntityTypeMapping TypeName="HRMSdbModel.designation">
+              <MappingFragment StoreEntitySet="designation">
+                <ScalarProperty Name="desigId" ColumnName="desigId" />
+                <ScalarProperty Name="desigName" ColumnName="desigName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employees">
+            <EntityTypeMapping TypeName="HRMSdbModel.employee">
+              <MappingFragment StoreEntitySet="employee">
+                <ScalarProperty Name="empId" ColumnName="empId" />
+                <ScalarProperty Name="empName" ColumnName="empName" />
+                <ScalarProperty Name="empPhone" ColumnName="empPhone" />
+                <ScalarProperty Name="empEmail" ColumnName="empEmail" />
+                <ScalarProperty Name="empAddress" ColumnName="empAddress" />
+                <ScalarProperty Name="joiningDate" ColumnName="joiningDate" />
+                <ScalarProperty Name="empIsActive" ColumnName="empIsActive" />
+                <ScalarProperty Name="empGender" ColumnName="empGender" />
+                <ScalarProperty Name="empSkill" ColumnName="empSkill" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="payrolls">
+            <EntityTypeMapping TypeName="HRMSdbModel.payroll">
+              <MappingFragment StoreEntitySet="payroll">
+                <ScalarProperty Name="payrollId" ColumnName="payrollId" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="payslips">
+            <EntityTypeMapping TypeName="HRMSdbModel.payslip">
+              <MappingFragment StoreEntitySet="payslip">
+                <ScalarProperty Name="payslipId" ColumnName="payslipId" />
+                <ScalarProperty Name="payslipDate" ColumnName="payslipDate" />
+                <ScalarProperty Name="addition" ColumnName="addition" />
+                <ScalarProperty Name="deduction" ColumnName="deduction" />
+                <ScalarProperty Name="genarate" ColumnName="genarate" />
+                <ScalarProperty Name="basic" ColumnName="basic" />
+                <ScalarProperty Name="ca" ColumnName="ca" />
+                <ScalarProperty Name="ha" ColumnName="ha" />
+                <ScalarProperty Name="salId" ColumnName="salId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="salaries">
+            <EntityTypeMapping TypeName="HRMSdbModel.salary">
+              <MappingFragment StoreEntitySet="salary">
+                <ScalarProperty Name="salId" ColumnName="salId" />
+                <ScalarProperty Name="salDate" ColumnName="salDate" />
+                <ScalarProperty Name="basic" ColumnName="basic" />
+                <ScalarProperty Name="ca" ColumnName="ca" />
+                <ScalarProperty Name="ha" ColumnName="ha" />
+                <ScalarProperty Name="empId" ColumnName="empId" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="HRMSdbModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="empId" ColumnName="empId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usertypes">
+            <EntityTypeMapping TypeName="HRMSdbModel.usertype">
+              <MappingFragment StoreEntitySet="usertype">
+                <ScalarProperty Name="utypeId" ColumnName="utypeId" />
+                <ScalarProperty Name="utypeName" ColumnName="utypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="empdept" TypeName="HRMSdbModel.empdept" StoreEntitySet="empdept">
+            <EndProperty Name="department">
+              <ScalarProperty Name="deptId" ColumnName="deptId" />
+            </EndProperty>
+            <EndProperty Name="employee">
+              <ScalarProperty Name="empId" ColumnName="empId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="empdesig" TypeName="HRMSdbModel.empdesig" StoreEntitySet="empdesig">
+            <EndProperty Name="designation">
+              <ScalarProperty Name="desigId" ColumnName="desigId" />
+            </EndProperty>
+            <EndProperty Name="employee">
+              <ScalarProperty Name="empId" ColumnName="empId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="emputype" TypeName="HRMSdbModel.emputype" StoreEntitySet="emputype">
+            <EndProperty Name="employee">
+              <ScalarProperty Name="empId" ColumnName="empId" />
+            </EndProperty>
+            <EndProperty Name="usertype">
+              <ScalarProperty Name="utypeId" ColumnName="utypeId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="paypay" TypeName="HRMSdbModel.paypay" StoreEntitySet="paypay">
+            <EndProperty Name="payroll">
+              <ScalarProperty Name="payrollId" ColumnName="payrollId" />
+            </EndProperty>
+            <EndProperty Name="payslip">
+              <ScalarProperty Name="payslipId" ColumnName="payslipId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

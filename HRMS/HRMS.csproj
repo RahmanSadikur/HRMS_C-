@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{079B92B0-F359-43FF-B4F1-1F3F7A667BBB}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>HRMS</RootNamespace>
+    <AssemblyName>HRMS</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Design, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Licensing, Version=17.1460.0.42, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Licensing.17.1.0.42\lib\net46\Syncfusion.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Shared.WPF, Version=17.1460.0.42, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Shared.WPF.17.1.0.42\lib\net46\Syncfusion.Shared.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdminDashForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminDashForm.Designer.cs">
+      <DependentUpon>AdminDashForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPayRollForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminPayRollForm.Designer.cs">
+      <DependentUpon>AdminPayRollForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="department.cs">
+      <DependentUpon>HRMSdbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DepartmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DepartmentForm.Designer.cs">
+      <DependentUpon>DepartmentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="designation.cs">
+      <DependentUpon>HRMSdbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DesignationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DesignationForm.Designer.cs">
+      <DependentUpon>DesignationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="employee.cs">
+      <DependentUpon>HRMSdbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="employee2.cs" />
+    <Compile Include="EmployeeDashForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployeeDashForm.Designer.cs">
+      <DependentUpon>EmployeeDashForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeRolesMangerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployeeRolesMangerForm.Designer.cs">
+      <DependentUpon>EmployeeRolesMangerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeUserInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployeeUserInfo.Designer.cs">
+      <DependentUpon>EmployeeUserInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmployessRoles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployessRoles.Designer.cs">
+      <DependentUpon>EmployessRoles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmpUserManagerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmpUserManagerForm.Designer.cs">
+      <DependentUpon>EmpUserManagerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HRMSdbContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HRMSdbContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRMSdbContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HRMSdbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRMSdbContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HRMSdbContext.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManageEmployeeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageEmployeeForm.Designer.cs">
+      <DependentUpon>ManageEmployeeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerDashForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagerDashForm.Designer.cs">
+      <DependentUpon>ManagerDashForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerManageEmpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagerManageEmpForm.Designer.cs">
+      <DependentUpon>ManagerManageEmpForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerPayslipForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagerPayslipForm.Designer.cs">
+      <DependentUpon>ManagerPayslipForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerPayslipListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagerPayslipListForm.Designer.cs">
+      <DependentUpon>ManagerPayslipListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerSalaryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagerSalaryForm.Designer.cs">
+      <DependentUpon>ManagerSalaryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="payroll.cs">
+      <DependentUpon>HRMSdbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="payslip.cs">
+      <DependentUpon>HRMSdbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="payslipForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="payslipForm.Designer.cs">
+      <DependentUpon>payslipForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="payslipListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="payslipListForm.Designer.cs">
+      <DependentUpon>payslipListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProfileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProfileForm.Designer.cs">
+      <DependentUpon>ProfileForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProfilePaySlipForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProfilePaySlipForm.Designer.cs">
+      <DependentUpon>ProfilePaySlipForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="salary.cs">
+      <DependentUpon>HRMSdbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="salary2.cs" />
+    <Compile Include="SalaryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SalaryForm.Designer.cs">
+      <DependentUpon>SalaryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="user.cs">
+      <DependentUpon>HRMSdbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usertype.cs">
+      <DependentUpon>HRMSdbContext.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AdminDashForm.resx">
+      <DependentUpon>AdminDashForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminPayRollForm.resx">
+      <DependentUpon>AdminPayRollForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DepartmentForm.resx">
+      <DependentUpon>DepartmentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesignationForm.resx">
+      <DependentUpon>DesignationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeeDashForm.resx">
+      <DependentUpon>EmployeeDashForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeeRolesMangerForm.resx">
+      <DependentUpon>EmployeeRolesMangerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeeUserInfo.resx">
+      <DependentUpon>EmployeeUserInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployessRoles.resx">
+      <DependentUpon>EmployessRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmpUserManagerForm.resx">
+      <DependentUpon>EmpUserManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageEmployeeForm.resx">
+      <DependentUpon>ManageEmployeeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagerDashForm.resx">
+      <DependentUpon>ManagerDashForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagerManageEmpForm.resx">
+      <DependentUpon>ManagerManageEmpForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagerPayslipForm.resx">
+      <DependentUpon>ManagerPayslipForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagerPayslipListForm.resx">
+      <DependentUpon>ManagerPayslipListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagerSalaryForm.resx">
+      <DependentUpon>ManagerSalaryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="payslipForm.resx">
+      <DependentUpon>payslipForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="payslipListForm.resx">
+      <DependentUpon>payslipListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProfileForm.resx">
+      <DependentUpon>ProfileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProfilePaySlipForm.resx">
+      <DependentUpon>ProfilePaySlipForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="SalaryForm.resx">
+      <DependentUpon>SalaryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="HRMSdbContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HRMSdbContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="HRMSdbContext.edmx.diagram">
+      <DependentUpon>HRMSdbContext.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="HRMSdbContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HRMSdbContext.edmx</DependentUpon>
+      <LastGenOutput>HRMSdbContext.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="HRMSdbContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HRMSdbContext.edmx</DependentUpon>
+      <LastGenOutput>HRMSdbContext.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
